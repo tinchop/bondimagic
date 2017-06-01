@@ -11,3 +11,5 @@ class RouteSegment {
         return containsLat && containsLong;
     }
 }
+
+module.exports = RouteSegment;

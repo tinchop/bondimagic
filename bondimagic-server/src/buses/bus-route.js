@@ -12,3 +12,5 @@ class BusRoute {
         return this.segments.some((segment) => segment.contains(location));
     }
 }
+
+module.exports = BusRoute;
