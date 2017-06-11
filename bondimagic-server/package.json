@@ -11,7 +11,8 @@
   "dependencies": {
     "express": "~4.15.3",
     "mongodb": "~2.2.27",
-    "mongoose": "~4.10.5"
+    "mongoose": "~4.10.5",
+    "geolib": "~2.0.22"
   },
   "devDependencies": {
     "chai": "^4.0.1",
