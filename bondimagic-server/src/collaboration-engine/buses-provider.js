@@ -9,9 +9,7 @@ class BusesProvider {
         return this.buses;
     }
 
-    addBus(busRouteId) {
-        let location = 0; //TODO: Buscar location
-        bus = new Bus(busRouteId, location);
+    addBus(bus) {
         this.buses.push(bus);
     }
 
