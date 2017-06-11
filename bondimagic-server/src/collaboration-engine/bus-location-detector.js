@@ -9,3 +9,5 @@ class BusLocationDetector{
         return detectedBUs;
     }
 }
+
+module.exports = BusLocationDetector;
