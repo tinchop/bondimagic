@@ -1,7 +1,7 @@
 class BusesProvider {
 
     constructor() {
-        this.buses = new Array();
+        this.buses = [];
     }
 
     getBuses(busRouteId, location) {
@@ -10,15 +10,26 @@ class BusesProvider {
     }
 
     addBus(busRouteId) {
-
+        let location = 0; //TODO: Buscar location
+        bus = new Bus(busRouteId, location);
+        this.buses.push(bus);
     }
 
     updateBus(busRouteId) {
-
+        
+        var newLocation = 0; //TODO: Falta tener la ubicacion nueva
+        var index = this.buses.indexOf(busRouteId);
+        if (index > -1) {
+            let busToUpdate = this.buses[index];
+            busToUpdate.location = newLocation;
+        }
     }
 
     removeBus(busRouteId) {
-        
+        var index = this.buses.indexOf(busRouteId);
+        if (index > -1) {
+            this.buses.splice(index, 1);
+        }
     }
 }
 

@@ -5,7 +5,7 @@ class BusLocationDetector{
     }
 
     detectLocations() {
-        detectedBUs = new Array();
+        detectedBUs = [];
         return detectedBUs;
     }
 }
