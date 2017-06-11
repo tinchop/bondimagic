@@ -1,14 +1,13 @@
+var geolib = require('geolib');
+
 class RouteSegment {
     // recibe locations
-    constructor(from, to) {
-        this.from = from;
-        this.to = to;
+    constructor(polygon) {
+        this.polygon = polygon;
     }
 
     contains(location) {
-        let containsLat = (this.from.lat <= location.lat) && (location.lat <= this.to.lat);
-        let containsLong = (this.from.long <= location.long) && (location.long <= this.to.long);
-        return containsLat && containsLong;
+        return geolib.isPointInside(location, this.polygon);
     }
 }
 
