@@ -21,3 +21,5 @@ class BusesProvider {
         
     }
 }
+
+module.exports = BusesProvider;
