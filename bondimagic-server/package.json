@@ -4,24 +4,14 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha 'src/**/*.spec.js'"
+    "test": "mocha 'src/**/*.spec.js'"
   },
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
     "express": "~4.15.3",
     "mongodb": "~2.2.27",
-    "bson": "~1.0.4",
-    "regexp-clone": "0.0.1",
-    "sliced": "~1.0.1",
-    "mpath": "~0.2.1",
-    "ms": "~2.0.0",
-    "kareem": "~1.4.1",
-    "async": "~2.4.1",
-    "hooks-fixed": "~2.0.0",
-    "mpromise": "~0.5.5",
-    "mquery": "~2.3.1",
-    "muri": "~1.2.1"
+    "mongoose": "~4.10.5"
   },
   "devDependencies": {
     "chai": "^4.0.1",
