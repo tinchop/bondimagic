@@ -39,6 +39,16 @@ class UserLocationManager {
 
         return busRoute.contains(location);
     }
+
+    getUserLocations() {
+        let result = [];
+        this.userLocations.forEach((userLocation, userId, map) => {
+            if (userLocation.inRoute) {
+                result.push(userLocation);
+            }
+        })
+        return result;
+    }
 }
 
 module.exports = UserLocationManager;

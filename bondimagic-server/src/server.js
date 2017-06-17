@@ -4,10 +4,22 @@ var bodyParser = require("body-parser");
 const BondiMagicService = require('./bondi-magic-service');
 const UserLocationManager = require('./collaboration-engine/user-location-manager');
 const BusProvider = require('./collaboration-engine/bus-provider');
+const BusLocationDetector = require('././collaboration-engine/bus-location-detector');
 
 let userLocationManager = new UserLocationManager();
 let busProvider = new BusProvider();
 let bondiMagicService = new BondiMagicService(userLocationManager, busProvider);
+let busLocationDetector = new BusLocationDetector();
+
+/**ESTO ES EL ENGINE*/
+function detectBuses() {
+	let userLocations = userLocationManager.getUserLocations();
+	let buses = busLocationDetector.detectLocations(userLocations);
+	busProvider.setBuses(buses);
+}
+
+setInterval(detectBuses, 100);
+/***/
 
 app.use(bodyParser.json());
 

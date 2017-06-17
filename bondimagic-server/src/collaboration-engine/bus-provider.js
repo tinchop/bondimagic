@@ -13,6 +13,10 @@ class BusProvider {
         this.buses.push(bus);
     }
 
+    setBuses(buses) {
+        this.buses = buses;
+    }
+
     updateBus(busRouteId) {
         
         var newLocation = 0; //TODO: Falta tener la ubicacion nueva
