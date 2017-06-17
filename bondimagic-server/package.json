@@ -10,10 +10,11 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "~4.15.3",
+    "geolib": "~2.0.22",
     "mongodb": "~2.2.27",
-    "mongoose": "~4.10.5",
-    "geolib": "~2.0.22"
+    "mongoose": "~4.10.5"
   },
   "devDependencies": {
     "chai": "^4.0.1",
