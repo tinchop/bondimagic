@@ -1,6 +1,5 @@
 var express = require('express');
 var app = express();
-var geolib = require('geolib');
 var bodyParser = require("body-parser");
 const BondiMagicService = require('./bondi-magic-service');
 const UserLocationManager = require('./collaboration-engine/user-location-manager');

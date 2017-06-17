@@ -5,7 +5,7 @@ class BondiMagicService {
     }
     
     getNearbyBuses(user, location, busRouteId) {
-        //TODO
+        this.userLocationManager.process(user, location, busRouteId);
         return this.busProvider.getBuses(busRouteId, location);
     }
 }
