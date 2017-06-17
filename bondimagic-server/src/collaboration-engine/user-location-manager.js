@@ -12,13 +12,12 @@ class UserLocationManager {
     }
 
     locationWithinBusRoute(location, busRouteId) {
-        //this is a mockup BusRoute, this should be retrieved from db in the future
-        //in the meantime it could be moved to a preliminary mockup service
+        //desde paseo colon y eeuu hasta paseo colon y alsina
         let polygon = [
-            {latitude:-34.6091424, longitude:-58.3919628},
-            {latitude:-34.6091634, longitude:-58.3921174},
-            {latitude:-34.609356, longitude:-58.3948649},
-            {latitude:-34.6093952, longitude:-58.3948622}
+            {latitude:-34.6183359, longitude:-58.3687782},
+            {latitude:-34.6183006, longitude:-58.3693522},
+            {latitude:-34.6100032, longitude:-58.369414},
+            {latitude:-34.6100087, longitude:-58.3695783}
         ];
         let segment = new RouteSegment(polygon);
         let busRoute = new BusRoute();
