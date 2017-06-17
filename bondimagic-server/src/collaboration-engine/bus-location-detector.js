@@ -1,3 +1,6 @@
+var geocluster = require("geocluster");
+const Bus = require('./../buses/bus');
+const Location = require('./location');
 const DEFAULT_UMBRAL = 2;
 
 
@@ -7,9 +10,22 @@ class BusLocationDetector {
     }
 
     detectLocations(userLocations) {
-        let groupByBusRoute = this._groupByBusRoute(userLocations);
-        let detectedBus = [];
-        return detectedBus;
+        let buses = [];
+        let usersByBusRoute = this._groupByBusRoute(userLocations);
+        usersByBusRoute.forEach((userLocations, busRouteId, map) => {
+            let locations = [];
+            userLocations.forEach((userLocation) => {
+                locations.push([userLocation.currentLocation.latitude, userLocation.currentLocation.longitude]);
+            });
+            let clusteredLocations = geocluster(locations);
+            clusteredLocations.forEach((cluster) => {
+                if (cluster.elements.length > this.umbral) {
+                    buses.push(new Bus(busRouteId, new Location(cluster.centroid[0], cluster.centroid[1])));
+                }
+            });
+
+        });
+        return buses;
     }
 
     _groupByBusRoute(userLocations) {
@@ -21,7 +37,7 @@ class BusLocationDetector {
                 users.push(userLocation);
                 result.set(busRouteId, users);
             } else {
-                result.set(busRouteId, []);
+                result.set(busRouteId, [userLocation]);
             }
         });
 

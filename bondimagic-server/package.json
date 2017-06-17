@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start" : "node src/server.js",
+    "start": "node src/server.js",
     "test": "mocha 'src/**/*.spec.js'",
     "test-cases": "mocha 'src/tests/test-cases.js'"
   },
@@ -13,6 +13,7 @@
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "~4.15.3",
+    "geocluster": "^0.1.1",
     "geolib": "~2.0.22",
     "mongodb": "~2.2.27",
     "mongoose": "~4.10.5"

@@ -46,7 +46,7 @@ class UserLocationManager {
             if (userLocation.inRoute) {
                 result.push(userLocation);
             }
-        })
+        });
         return result;
     }
 }
