@@ -3,8 +3,12 @@ var app = express();
 var geolib = require('geolib');
 var bodyParser = require("body-parser");
 const BondiMagicService = require('./bondi-magic-service');
+const UserLocationManager = require('./collaboration-engine/user-location-manager');
+const BusProvider = require('./collaboration-engine/bus-provider');
 
-let bondiMagicService = new BondiMagicService();
+let userLocationManager = new UserLocationManager();
+let busProvider = new BusProvider();
+let bondiMagicService = new BondiMagicService(userLocationManager, busProvider);
 
 app.use(bodyParser.json());
 

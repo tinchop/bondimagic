@@ -1,4 +1,4 @@
-class BusLocationDetector{
+class BusLocationDetector {
 
     constructor(umbral) {
         this.umbral = umbral;

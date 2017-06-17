@@ -1,4 +1,4 @@
-class BusesProvider {
+class BusProvider {
 
     constructor() {
         this.buses = [];
@@ -31,4 +31,4 @@ class BusesProvider {
     }
 }
 
-module.exports = BusesProvider;
+module.exports = BusProvider;
