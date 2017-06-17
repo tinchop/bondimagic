@@ -27,9 +27,8 @@ app.post('/nearbybuses', function (req, res) {
 	var user = req.body['user'];
 	var location = req.body['location'];
 	var busRouteId = req.body['busRouteId'];
-	// console.log(user, ' consulta por el colectivo ', busRouteId, ' desde la ubicación ', location);
 	var result = bondiMagicService.getNearbyBuses(user, location, busRouteId);
-	res.send(result);
+	res.json(result);
 });
 
 app.get('/', function (req, res) {
