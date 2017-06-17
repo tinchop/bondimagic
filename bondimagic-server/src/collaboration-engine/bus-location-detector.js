@@ -1,11 +1,12 @@
-class BusLocationDetector {
+const DEFAULT_UMBRAL = 2;
 
-    constructor(umbral) {
-        this.umbral = umbral;
+class BusLocationDetector {
+    constructor() {
+        this.umbral = DEFAULT_UMBRAL;
     }
 
-    detectLocations() {
-        detectedBus = [];
+    detectLocations(userLocations) {
+        let detectedBus = [];
         return detectedBus;
     }
 }
