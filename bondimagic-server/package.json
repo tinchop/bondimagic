@@ -4,6 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
+    "start" : "node src/server.js",
     "test": "mocha 'src/**/*.spec.js'",
     "test-cases": "mocha 'src/tests/test-cases.js'"
   },
