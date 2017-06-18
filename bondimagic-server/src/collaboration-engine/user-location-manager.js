@@ -1,7 +1,8 @@
+var colors = require('colors/safe');
 const UserLocation = require('./user-location');
 const BusRouteService = require('./../buses/bus-route-service');
 
-const MIN_DISTANCE_THRESHOLD = 40;
+const MIN_DISTANCE_THRESHOLD = 80;
 const MAX_TIME_OFFLINE_THRESHOLD = 10000;
 
 class UserLocationManager {
@@ -17,7 +18,7 @@ class UserLocationManager {
         if (userLocation) {
             this._updateUserLocation(userLocation, location, busRouteId);
         } else {
-            console.log("Agrego nuevo UserLocation para ", user);
+            console.log(colors.blue.bold("Nuevo usuario compartiendo su ubicación:"), colors.magenta(user));
             this.userLocations.set(user, new UserLocation(user, busRouteId, location));
         }
     }
@@ -31,6 +32,16 @@ class UserLocationManager {
         return busRoute.contains(location);
     }
 
+    getUserLocations() {
+        let result = [];
+        this.userLocations.forEach((userLocation, userId, map) => {
+            if (userLocation.inRoute && userLocation.travelledDistance >= this.minDistanceThreshold) {
+                result.push(userLocation);
+            }
+        });
+        return result;
+    }
+
     purgeUserLocations() {
         let toBePurged = [];
         this.userLocations.forEach((userLocation, userId, map) => {
@@ -42,17 +53,8 @@ class UserLocationManager {
         });
         toBePurged.forEach((userId) => {
             this.userLocations.delete(userId);
+            console.log(colors.yellow.bold("Usuario purgado!:"), colors.magenta(userId));
         });
-    }
-
-    getUserLocations() {
-        let result = [];
-        this.userLocations.forEach((userLocation, userId, map) => {
-            if (userLocation.inRoute && userLocation.travelledDistance >= this.minDistanceThreshold) {
-                result.push(userLocation);
-            }
-        });
-        return result;
     }
 }
 

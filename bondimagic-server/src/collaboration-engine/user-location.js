@@ -1,4 +1,5 @@
 var geolib = require('geolib');
+var colors = require('colors/safe');
 
 class UserLocation {
     constructor(userId, busRouteId, currentLocation) {
@@ -21,7 +22,8 @@ class UserLocation {
         } else {
             this.travelledDistance = 0;
         }
-        console.log(this.userId, ":", "ramal=", this.busRouteId, "dist recorrida=", this.travelledDistance, "en ruta =", (this.inRoute ? "Sí" : "No"));
+
+        console.log(colors.magenta.bold(this.userId + ":"), colors.blue("Ramal=") + this.busRouteId, colors.blue("Distancia recorrida dentro de ruta (en metros)=") + this.travelledDistance, colors.blue("En ruta=") + (this.inRoute ? "Sí" : "No"));
     }
 
     _calculateDistance(prevLocation, newLocation) {

@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 var bodyParser = require("body-parser");
+var colors = require('colors/safe');
 const BondiMagicService = require('./bondi-magic-service');
 const UserLocationManager = require('./collaboration-engine/user-location-manager');
 const BusProvider = require('./collaboration-engine/bus-provider');
@@ -38,5 +39,5 @@ app.get('/', function (req, res) {
 });
 
 app.listen(3000, function () {
-	console.log('Bondimagic server listening on port 3000!');
+	console.log(colors.green.bold('Bondimagic server listening on port 3000!'));
 });

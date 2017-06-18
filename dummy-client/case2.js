@@ -1,4 +1,5 @@
 var request = require('request');
+var colors = require('colors/safe');
 
 //Lucas, Monk y María están arriba de un 59
 //Comienzan en Av 9 de Julio y Marcelo T de Alvear -34.596735, -58.382103
@@ -63,7 +64,21 @@ function userRequest(user, busRouteId, location, delta) {
 
 	request(options, function (error, response, body) {
 		if (user == 'Renfield') {
-			console.log(body);
+			if (!body) {
+				console.log(colors.red('No se pudo contactar al servidor.'));
+			} else if (body.length > 0) {
+				console.log(colors.green.bold('\n' + body.length + ' colectivo' + ((body.length > 1) ? 's' : '') + ' encontrado' + ((body.length > 1) ? 's' : '') + ': ') + colors.green('(ramal 59)'));
+				var busId = 1;
+				body.forEach((bus) => {
+					console.log(
+						colors.green('Colectivo nro: ') + busId + colors.yellow(' | ') +
+						colors.green('Ubicación: ') + bus.location.latitude + ',' + bus.location.longitude
+					);
+					busId++;
+				});
+			} else {
+				console.log(colors.blue('Aún no se encontraron colectivos.'));
+			}
 		}
 	});
 }
