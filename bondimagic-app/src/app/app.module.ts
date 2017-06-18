@@ -7,16 +7,18 @@ import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { MapPage } from '../pages/map/map';
 
+import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from '@ionic-native/google-maps';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { GoogleMaps } from '@ionic-native/google-maps';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     ListPage,
-    MapPage],
+    MapPage
+    ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
@@ -29,6 +31,7 @@ import { GoogleMaps } from '@ionic-native/google-maps';
     MapPage
   ],
   providers: [
+    Geolocation,
     GoogleMaps,
     StatusBar,
     SplashScreen,
