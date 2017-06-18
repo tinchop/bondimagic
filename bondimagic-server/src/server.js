@@ -12,13 +12,15 @@ let bondiMagicService = new BondiMagicService(userLocationManager, busProvider);
 let busLocationDetector = new BusLocationDetector();
 
 /**ESTO ES EL ENGINE*/
+const BUS_DETECTION_INTERVAL = 500;
 function detectBuses() {
+	userLocationManager.purgeUserLocations();
 	let userLocations = userLocationManager.getUserLocations();
 	let buses = busLocationDetector.detectLocations(userLocations);
 	busProvider.setBuses(buses);
 }
 
-setInterval(detectBuses, 100);
+setInterval(detectBuses, BUS_DETECTION_INTERVAL);
 /***/
 
 app.use(bodyParser.json());

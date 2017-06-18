@@ -43,7 +43,7 @@ setInterval(userRequest, 1500, 'Pedro', 59, pedroLocation, draculaDelta);
 
 function userRequest(user, busRouteId, location, delta) {
 
-	//Resto desplazo de norte a sur, de oeste a este
+	//Resto porque se desplazan de norte a sur, de oeste a este
 	location.latitude = location.latitude - delta.latitude;
 	location.longitude = location.longitude - delta.longitude;
 	var requestBody = {
@@ -62,6 +62,8 @@ function userRequest(user, busRouteId, location, delta) {
 	};
 
 	request(options, function (error, response, body) {
-		console.log(body);
+		if (user == 'Renfield') {
+			console.log(body);
+		}
 	});
 }

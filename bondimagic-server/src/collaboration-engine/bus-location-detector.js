@@ -1,12 +1,12 @@
 var geocluster = require("geocluster");
 const Bus = require('./../buses/bus');
 const Location = require('./location');
-const DEFAULT_UMBRAL = 2;
+const MIN_USERS_THRESHOLD = 3;
 
 
 class BusLocationDetector {
     constructor() {
-        this.umbral = DEFAULT_UMBRAL;
+        this.threshold = MIN_USERS_THRESHOLD;
     }
 
     detectLocations(userLocations) {
@@ -19,7 +19,7 @@ class BusLocationDetector {
             });
             let clusteredLocations = geocluster(locations);
             clusteredLocations.forEach((cluster) => {
-                if (cluster.elements.length > this.umbral) {
+                if (cluster.elements.length >= this.threshold) {
                     buses.push(new Bus(busRouteId, new Location(cluster.centroid[0], cluster.centroid[1])));
                 }
             });

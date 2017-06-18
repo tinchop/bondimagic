@@ -7,7 +7,7 @@ class UserLocation {
         this.currentLocation = currentLocation;
         this.previousLocation;
         this.travelledDistance = 0;
-        this.lastRequestTimestamp;
+        this.lastRequestTimestamp = new Date();
         this.inRoute = false;
     }
 
