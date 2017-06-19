@@ -2,7 +2,7 @@ var colors = require('colors/safe');
 const UserLocation = require('./user-location');
 const BusRouteService = require('./../buses/bus-route-service');
 
-const MIN_DISTANCE_THRESHOLD = 80;
+const MIN_DISTANCE_THRESHOLD = 60;
 const MAX_TIME_OFFLINE_THRESHOLD = 10000;
 
 class UserLocationManager {

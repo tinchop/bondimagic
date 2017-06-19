@@ -1,8 +1,7 @@
 var request = require('request');
 var colors = require('colors/safe');
 
-console.log(colors.magenta.italic('Lucas, Monk y María comienzan a transmitir su ubicación desde Av. 9 de Julio y Marcelo T De Alvear. Están en un colectivo de ramal 59 yendo a Av. 9 de Julio y Chile.'));
-//Lucas, Monk y María están arriba de un 59
+//Lucas y Monk están arriba de un 59
 //Comienzan en Av 9 de Julio y Marcelo T de Alvear -34.596735, -58.382103
 var lucasLocation = { latitude: -34.596735, longitude: -58.382103 };
 //Van hasta Av 9 de Julio y Chile -34.616462, -58.380931
@@ -14,42 +13,37 @@ var lucasDelta = {
 };
 
 var monkLocation = { latitude: -34.596735, longitude: -58.382103 };
-var mariaLocation = { latitude: -34.596735, longitude: -58.382103 };
 
-
+console.log(colors.magenta.italic('Lucas y Monk comienzan a transmitir su ubicación desde Av. 9 de Julio y Marcelo T De Alvear. Están en un colectivo de ramal 59 yendo a Av. 9 de Julio y Chile.'));
 setInterval(userRequest, 1500, 'Lucas', 59, lucasLocation, lucasDelta);
 setInterval(userRequest, 1500, 'Monk', 59, monkLocation, lucasDelta);
+
+//María está esperando el 59 en Av. 9 de Julio y Paraguay -34.59791862000001, -58.38203267999998
+var mariaIsOnBus = false;
+var iterations = 0;
+var mariaLocation = { latitude: -34.59791862000001, longitude: -58.38203267999998 };
+console.log(colors.magenta.italic('María está esperando el 59 en Av. 9 de Julio y Paraguay.'));
 setInterval(userRequest, 1500, 'María', 59, mariaLocation, lucasDelta);
 
-//Renfield está parado solo en Belgrano y Diagonal Sur -34.6128962, -58.3775573
-console.log(colors.magenta.italic('Renfield está parado solo en Belgrano y Diagonal Sur.'));
+
+//Renfield está parado solo en Belgrano y Diagonal Sur
 var renfieldLocation = { latitude: -34.6128962, longitude: -58.3775573 };
 var renfieldDelta = { latitude: 0, longitude: 0 };
 setInterval(userRequest, 1500, 'Renfield', 59, renfieldLocation, renfieldDelta);
 
-console.log(colors.magenta.italic('Dracula, Juan y Pedro comienzan a transmitir su ubicación desde Av. 9 de Julio y Rivadavia. Están en otro colectivo de ramal 59 yendo a Av. 9 de Julio y Chile también.'));
-//Dracula, Juan y Pedro están arriba de otro 59
-//Comienzan en Av 9 de Julio y Rivadavia -34.608392, -58.381339
-var draculaLocation = { latitude: -34.608392, longitude: -58.381339 };
-//Van hasta Av 9 de Julio y Chile también -34.616462, -58.380931
-
-var draculaDelta = {
-	latitude: ((draculaLocation.latitude - friendsDestination.latitude) / 50),
-	longitude: ((draculaLocation.longitude - friendsDestination.longitude) / 50)
-};
-
-var juanLocation = { latitude: -34.608392, longitude: -58.381339 };
-var pedroLocation = { latitude: -34.608392, longitude: -58.381339 };
-
-setInterval(userRequest, 1500, 'Drácula', 59, draculaLocation, draculaDelta);
-setInterval(userRequest, 1500, 'Juan', 59, juanLocation, draculaDelta);
-setInterval(userRequest, 1500, 'Pedro', 59, pedroLocation, draculaDelta);
-
 function userRequest(user, busRouteId, location, delta) {
+	iterations++;
 
-	//Resto porque se desplazan de norte a sur, de oeste a este
-	location.latitude = location.latitude - delta.latitude;
-	location.longitude = location.longitude - delta.longitude;
+	if (user == 'Lucas' && iterations >= 25 && !mariaIsOnBus) {
+			console.log(colors.magenta.italic('María se sube al mismo colectivo donde están Lucas y Monk.'));
+			mariaIsOnBus = true;
+	}
+	if (user != 'María' || mariaIsOnBus) {
+		//Resto porque se desplazan de norte a sur, de oeste a este
+		location.latitude = location.latitude - delta.latitude;
+		location.longitude = location.longitude - delta.longitude;
+	}
+
 	var requestBody = {
 		user: user,
 		busRouteId: busRouteId,
