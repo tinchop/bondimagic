@@ -2,6 +2,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require("body-parser");
 var colors = require('colors/safe');
+var cors = require('cors');
 const BondiMagicService = require('./bondi-magic-service');
 const UserLocationManager = require('./collaboration-engine/user-location-manager');
 const BusProvider = require('./collaboration-engine/bus-provider');
@@ -24,6 +25,7 @@ function detectBuses() {
 setInterval(detectBuses, BUS_DETECTION_INTERVAL);
 /***/
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.post('/nearbybuses', function (req, res) {

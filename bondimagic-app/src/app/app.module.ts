@@ -11,6 +11,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -18,10 +19,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     ListPage,
     MapPage
-    ],
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
