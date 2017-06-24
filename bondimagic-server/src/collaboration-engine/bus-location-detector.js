@@ -6,7 +6,7 @@ const MIN_USERS_THRESHOLD = 3;
 
 class BusLocationDetector {
     constructor() {
-        this.threshold = MIN_USERS_THRESHOLD;
+        this.minUsersThreshold = MIN_USERS_THRESHOLD;
     }
 
     detectLocations(userLocations) {
@@ -19,7 +19,7 @@ class BusLocationDetector {
             });
             let clusteredLocations = geocluster(locations);
             clusteredLocations.forEach((cluster) => {
-                if (cluster.elements.length >= this.threshold) {
+                if (cluster.elements.length >= this.minUsersThreshold) {
                     buses.push(new Bus(busRouteId, new Location(cluster.centroid[0], cluster.centroid[1])));
                 }
             });
