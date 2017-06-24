@@ -89,7 +89,7 @@ export class MapPage {
     console.log('addMarker()');
     let marker = new google.maps.Marker({
       map: this.map,
-      icon: 'src/assets/markers/59.jpg',
+      icon: '/assets/markers/59.jpg',
       position: location
     });
     markers.push(marker);
