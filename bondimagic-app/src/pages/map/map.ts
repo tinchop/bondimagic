@@ -62,11 +62,12 @@ export class MapPage {
     console.log('loadMap()');
     this.geolocation.getCurrentPosition().then((position) => {
 
-      let latLng = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
+      //no muestra donde está el usuario, muestra centrado en el obelisco que es donde pasan nuestras líneas
+      let latLng = new google.maps.LatLng(-34.603518, -58.381622);
 
       let mapOptions = {
         center: latLng,
-        zoom: 18,
+        zoom: 14,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       }
 
