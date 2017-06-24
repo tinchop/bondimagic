@@ -15,6 +15,8 @@ export class MapPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
 
+  private requestNearbyBusesIntervalId: number;
+
 
   constructor(public navCtrl: NavController, public geolocation: Geolocation, public http: Http) {
 
@@ -24,9 +26,14 @@ export class MapPage {
     this.loadMap();
   }
 
+  ionViewDidLeave() {
+    console.log('Leaving map view. Stop requestNearbyBuses()');
+    clearInterval(this.requestNearbyBusesIntervalId);
+  }
+
   private showNearbyBuses() {
     console.log('showNearbyBuses()');
-    setInterval(this.requestNearbyBuses, 5000, this);
+    this.requestNearbyBusesIntervalId = setInterval(this.requestNearbyBuses, 5000, this);
     // var myLatLng = {lat: -25.363, lng: 131.044};
     // this.addMarker({});
   }
