@@ -20,6 +20,10 @@ app.post('/nearbybuses', function (req, res) {
 	res.json(result);
 });
 
+app.get('/bus-routes', (req, res) => {
+	res.json(bondiMagicService.getRutes());
+});
+
 app.get('/', function (req, res) {
 	res.send('This is the Bondimagic server, pal.');
 });
