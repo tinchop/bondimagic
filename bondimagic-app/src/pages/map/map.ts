@@ -55,9 +55,10 @@ export class MapPage {
       for (let bus of buses) {
         console.log('bus', bus);
         let busLocation = bus['location'];
+        let busId = bus['busRouteId'];
         busLocation.lat = busLocation.latitude;
         busLocation.lng = busLocation.longitude;
-        instance.addMarker(busLocation);
+        instance.addMarker(busLocation, busId);
 
       }
     }, error => {
@@ -93,16 +94,16 @@ export class MapPage {
     }
   }
 
-  addMarker(location) {
+  addMarker(location, linea) {
     console.log('addMarker()');
     let marker = new google.maps.Marker({
       map: this.map,
-      icon: '/assets/markers/59.jpg',
+      icon: '/assets/markers/' + linea + '.jpg',
       position: location
     });
     markers.push(marker);
 
-    let content = "<h4>Information!</h4>";
+    let content = "<h4>Linea: " + linea + "</h4>";
 
     this.addInfoWindow(marker, content);
   }
