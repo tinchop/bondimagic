@@ -16,6 +16,11 @@ export class MapPage {
   map: any;
 
   private requestNearbyBusesIntervalId: number;
+  private userLocation = {
+    latitude: -34.6128962, 
+    longitude: -58.3775573
+  };
+  private userMarker: any;
 
 
   constructor(public navCtrl: NavController, public geolocation: Geolocation, public http: Http) {
@@ -25,7 +30,7 @@ export class MapPage {
   ionViewDidLoad() {
     this.loadMap();
   }
-
+Marker
   ionViewDidLeave() {
     console.log('Leaving map view. Stop requestNearbyBuses()');
     clearInterval(this.requestNearbyBusesIntervalId);
@@ -38,15 +43,28 @@ export class MapPage {
     // this.addMarker({});
   }
 
+  private showUserLocation() {
+    console.log('showUserLocation()');
+    this.userMarker = new google.maps.Marker({
+      map: this.map,
+      position: this.toLatLngFormat(this.userLocation),
+      label: 'Usuario'
+    });
+  }
+
+  private toLatLngFormat(location):any {
+    return {
+      "lat": location.latitude,
+      "lng": location.longitude
+    };
+  }
+
   private requestNearbyBuses(instance) {
     console.log('requestNearbyBuses()');
     let requestBody = {
       user: 'Manolo',
       busRouteId: 59,
-      location: {
-        latitude: -25.363,
-        longitude: 131.044
-      }
+      location: instance.userLocation
     };
     instance.http.post('http://localhost:3000/nearbybuses', requestBody).subscribe(data => {
       instance.clearMarkers();
@@ -82,6 +100,7 @@ export class MapPage {
       this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
       this.showNearbyBuses();
+      this.showUserLocation();
 
     }, (err) => {
       console.log(err);
