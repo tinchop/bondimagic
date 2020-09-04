@@ -10,7 +10,7 @@
   "license": "BSD-2-Clause",
   "dependencies": {
     "express": "~4.15.3",
-    "mongodb": "~2.2.27",
+    "mongodb": "~3.6.1",
     "bson": "~1.0.4",
     "regexp-clone": "0.0.1",
     "sliced": "~1.0.1",
